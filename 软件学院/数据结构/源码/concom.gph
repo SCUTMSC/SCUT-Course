@@ -1,0 +1,10 @@
+# Graph example from book for connected components
+8               # Number of vertices
+U               # Undirected graph
+# List of edges
+0 1
+1 4
+0 4
+4 2
+1 3
+6 5

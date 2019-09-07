@@ -1,0 +1,601 @@
+// From the software distribution accompanying the textbook
+// "A Practical Introduction to Data Structures and Algorithm Analysis,
+// Third Edition (C++)" by Clifford A. Shaffer.
+// Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
+
+// Test the efficiency of various implementations for storing and
+// manipulating 32 boolean values. Methods tested are arrays of ints,
+// shorts, chars, and one-bit boolean values.
+
+#include "book.h"
+
+// 32 one-bit values using the C++ bit-flag operators
+struct btype {
+int f0 : 1;
+int f1 : 1;
+int f2 : 1;
+int f3 : 1;
+int f4 : 1;
+int f5 : 1;
+int f6 : 1;
+int f7 : 1;
+int f8 : 1;
+int f9 : 1;
+int f10 : 1;
+int f11 : 1;
+int f12 : 1;
+int f13 : 1;
+int f14 : 1;
+int f15 : 1;
+int f16 : 1;
+int f17 : 1;
+int f18 : 1;
+int f19 : 1;
+int f20 : 1;
+int f21 : 1;
+int f22 : 1;
+int f23 : 1;
+int f24 : 1;
+int f25 : 1;
+int f26 : 1;
+int f27 : 1;
+int f28 : 1;
+int f29 : 1;
+int f30 : 1;
+int f31 : 1;
+};
+
+// An array of characters
+struct cstruct {
+  char pos[32];
+};
+
+// An array of shorts
+struct sstruct {
+  short pos[32];
+};
+
+// An array of longs (which is the same as an int on a 32-bit machine)
+struct lstruct {
+  long pos[32];
+};
+
+// Now, lets see how long it takes to use these implementations
+int main(int argc, char** argv)
+{
+  struct cstruct cs; // chars
+  struct sstruct ss; // shorts
+  struct lstruct ls; // longs
+  struct btype b;    // bits
+
+  char csa[32];
+  short ssa[32];
+  long lsa[32];
+
+  long count;
+  long i;
+
+  // For timing, we can vary the number of iterations run
+  Assert(argc == 2, "Usage: flags <number_of_iterations>");
+
+  count = atol(argv[1]);
+
+  cs.pos[0] = true;
+  ss.pos[0] = true;
+  ls.pos[0] = true;
+  csa[0] = true;
+  ssa[0] = true;
+  lsa[0] = true;
+  b.f0 = true;
+
+  // For each interation, we are going to test the time to read and write
+  // the values by doing a copy from one array position to another.
+  // To cut down on the overhead of the outer loop, we do 120 assignements
+  // within the loop body.
+
+  Settime();
+  for (i=0; i<count; i++) {
+    csa[1] = csa[0];
+    csa[2] = csa[1];
+    csa[3] = csa[2];
+    csa[4] = csa[3];
+    csa[5] = csa[4];
+    csa[6] = csa[5];
+    csa[7] = csa[6];
+    csa[8] = csa[7];
+    csa[9] = csa[8];
+    csa[10] = csa[9];
+    csa[11] = csa[10];
+    csa[12] = csa[11];
+    csa[13] = csa[12];
+    csa[14] = csa[13];
+    csa[15] = csa[14];
+    csa[16] = csa[15];
+    csa[17] = csa[16];
+    csa[18] = csa[17];
+    csa[19] = csa[18];
+    csa[20] = csa[19];
+    csa[21] = csa[20];
+    csa[22] = csa[21];
+    csa[23] = csa[22];
+    csa[24] = csa[23];
+    csa[25] = csa[24];
+    csa[26] = csa[25];
+    csa[27] = csa[26];
+    csa[28] = csa[27];
+    csa[29] = csa[28];
+    csa[30] = csa[29];
+    csa[1] = csa[0];
+    csa[2] = csa[1];
+    csa[3] = csa[2];
+    csa[4] = csa[3];
+    csa[5] = csa[4];
+    csa[6] = csa[5];
+    csa[7] = csa[6];
+    csa[8] = csa[7];
+    csa[9] = csa[8];
+    csa[10] = csa[9];
+    csa[11] = csa[10];
+    csa[12] = csa[11];
+    csa[13] = csa[12];
+    csa[14] = csa[13];
+    csa[15] = csa[14];
+    csa[16] = csa[15];
+    csa[17] = csa[16];
+    csa[18] = csa[17];
+    csa[19] = csa[18];
+    csa[20] = csa[19];
+    csa[21] = csa[20];
+    csa[22] = csa[21];
+    csa[23] = csa[22];
+    csa[24] = csa[23];
+    csa[25] = csa[24];
+    csa[26] = csa[25];
+    csa[27] = csa[26];
+    csa[28] = csa[27];
+    csa[29] = csa[28];
+    csa[30] = csa[29];
+    csa[1] = csa[0];
+    csa[2] = csa[1];
+    csa[3] = csa[2];
+    csa[4] = csa[3];
+    csa[5] = csa[4];
+    csa[6] = csa[5];
+    csa[7] = csa[6];
+    csa[8] = csa[7];
+    csa[9] = csa[8];
+    csa[10] = csa[9];
+    csa[11] = csa[10];
+    csa[12] = csa[11];
+    csa[13] = csa[12];
+    csa[14] = csa[13];
+    csa[15] = csa[14];
+    csa[16] = csa[15];
+    csa[17] = csa[16];
+    csa[18] = csa[17];
+    csa[19] = csa[18];
+    csa[20] = csa[19];
+    csa[21] = csa[20];
+    csa[22] = csa[21];
+    csa[23] = csa[22];
+    csa[24] = csa[23];
+    csa[25] = csa[24];
+    csa[26] = csa[25];
+    csa[27] = csa[26];
+    csa[28] = csa[27];
+    csa[29] = csa[28];
+    csa[30] = csa[29];
+    csa[1] = csa[0];
+    csa[2] = csa[1];
+    csa[3] = csa[2];
+    csa[4] = csa[3];
+    csa[5] = csa[4];
+    csa[6] = csa[5];
+    csa[7] = csa[6];
+    csa[8] = csa[7];
+    csa[9] = csa[8];
+    csa[10] = csa[9];
+    csa[11] = csa[10];
+    csa[12] = csa[11];
+    csa[13] = csa[12];
+    csa[14] = csa[13];
+    csa[15] = csa[14];
+    csa[16] = csa[15];
+    csa[17] = csa[16];
+    csa[18] = csa[17];
+    csa[19] = csa[18];
+    csa[20] = csa[19];
+    csa[21] = csa[20];
+    csa[22] = csa[21];
+    csa[23] = csa[22];
+    csa[24] = csa[23];
+    csa[25] = csa[24];
+    csa[26] = csa[25];
+    csa[27] = csa[26];
+    csa[28] = csa[27];
+    csa[29] = csa[28];
+    csa[30] = csa[29];
+  }
+  cout << "Time for characters (120 assigns): " << count
+       << " iterations: " << Gettime() << " seconds\n";
+
+  Settime();
+  for (i=0; i<count; i++) {
+    ssa[1] = ssa[0];
+    ssa[2] = ssa[1];
+    ssa[3] = ssa[2];
+    ssa[4] = ssa[3];
+    ssa[5] = ssa[4];
+    ssa[6] = ssa[5];
+    ssa[7] = ssa[6];
+    ssa[8] = ssa[7];
+    ssa[9] = ssa[8];
+    ssa[10] = ssa[9];
+    ssa[11] = ssa[10];
+    ssa[12] = ssa[11];
+    ssa[13] = ssa[12];
+    ssa[14] = ssa[13];
+    ssa[15] = ssa[14];
+    ssa[16] = ssa[15];
+    ssa[17] = ssa[16];
+    ssa[18] = ssa[17];
+    ssa[19] = ssa[18];
+    ssa[20] = ssa[19];
+    ssa[21] = ssa[20];
+    ssa[22] = ssa[21];
+    ssa[23] = ssa[22];
+    ssa[24] = ssa[23];
+    ssa[25] = ssa[24];
+    ssa[26] = ssa[25];
+    ssa[27] = ssa[26];
+    ssa[28] = ssa[27];
+    ssa[29] = ssa[28];
+    ssa[30] = ssa[29];
+    ssa[1] = ssa[0];
+    ssa[2] = ssa[1];
+    ssa[3] = ssa[2];
+    ssa[4] = ssa[3];
+    ssa[5] = ssa[4];
+    ssa[6] = ssa[5];
+    ssa[7] = ssa[6];
+    ssa[8] = ssa[7];
+    ssa[9] = ssa[8];
+    ssa[10] = ssa[9];
+    ssa[11] = ssa[10];
+    ssa[12] = ssa[11];
+    ssa[13] = ssa[12];
+    ssa[14] = ssa[13];
+    ssa[15] = ssa[14];
+    ssa[16] = ssa[15];
+    ssa[17] = ssa[16];
+    ssa[18] = ssa[17];
+    ssa[19] = ssa[18];
+    ssa[20] = ssa[19];
+    ssa[21] = ssa[20];
+    ssa[22] = ssa[21];
+    ssa[23] = ssa[22];
+    ssa[24] = ssa[23];
+    ssa[25] = ssa[24];
+    ssa[26] = ssa[25];
+    ssa[27] = ssa[26];
+    ssa[28] = ssa[27];
+    ssa[29] = ssa[28];
+    ssa[30] = ssa[29];
+    ssa[1] = ssa[0];
+    ssa[2] = ssa[1];
+    ssa[3] = ssa[2];
+    ssa[4] = ssa[3];
+    ssa[5] = ssa[4];
+    ssa[6] = ssa[5];
+    ssa[7] = ssa[6];
+    ssa[8] = ssa[7];
+    ssa[9] = ssa[8];
+    ssa[10] = ssa[9];
+    ssa[11] = ssa[10];
+    ssa[12] = ssa[11];
+    ssa[13] = ssa[12];
+    ssa[14] = ssa[13];
+    ssa[15] = ssa[14];
+    ssa[16] = ssa[15];
+    ssa[17] = ssa[16];
+    ssa[18] = ssa[17];
+    ssa[19] = ssa[18];
+    ssa[20] = ssa[19];
+    ssa[21] = ssa[20];
+    ssa[22] = ssa[21];
+    ssa[23] = ssa[22];
+    ssa[24] = ssa[23];
+    ssa[25] = ssa[24];
+    ssa[26] = ssa[25];
+    ssa[27] = ssa[26];
+    ssa[28] = ssa[27];
+    ssa[29] = ssa[28];
+    ssa[30] = ssa[29];
+    ssa[1] = ssa[0];
+    ssa[2] = ssa[1];
+    ssa[3] = ssa[2];
+    ssa[4] = ssa[3];
+    ssa[5] = ssa[4];
+    ssa[6] = ssa[5];
+    ssa[7] = ssa[6];
+    ssa[8] = ssa[7];
+    ssa[9] = ssa[8];
+    ssa[10] = ssa[9];
+    ssa[11] = ssa[10];
+    ssa[12] = ssa[11];
+    ssa[13] = ssa[12];
+    ssa[14] = ssa[13];
+    ssa[15] = ssa[14];
+    ssa[16] = ssa[15];
+    ssa[17] = ssa[16];
+    ssa[18] = ssa[17];
+    ssa[19] = ssa[18];
+    ssa[20] = ssa[19];
+    ssa[21] = ssa[20];
+    ssa[22] = ssa[21];
+    ssa[23] = ssa[22];
+    ssa[24] = ssa[23];
+    ssa[25] = ssa[24];
+    ssa[26] = ssa[25];
+    ssa[27] = ssa[26];
+    ssa[28] = ssa[27];
+    ssa[29] = ssa[28];
+    ssa[30] = ssa[29];
+}
+  cout << "Time for shorts (120 assigns): " << count
+       << " iterations: " << Gettime() << " seconds\n";
+
+  Settime();
+  for (i=0; i<count; i++) {
+    lsa[1] = lsa[0];
+    lsa[2] = lsa[1];
+    lsa[3] = lsa[2];
+    lsa[4] = lsa[3];
+    lsa[5] = lsa[4];
+    lsa[6] = lsa[5];
+    lsa[7] = lsa[6];
+    lsa[8] = lsa[7];
+    lsa[9] = lsa[8];
+    lsa[10] = lsa[9];
+    lsa[11] = lsa[10];
+    lsa[12] = lsa[11];
+    lsa[13] = lsa[12];
+    lsa[14] = lsa[13];
+    lsa[15] = lsa[14];
+    lsa[16] = lsa[15];
+    lsa[17] = lsa[16];
+    lsa[18] = lsa[17];
+    lsa[19] = lsa[18];
+    lsa[20] = lsa[19];
+    lsa[21] = lsa[20];
+    lsa[22] = lsa[21];
+    lsa[23] = lsa[22];
+    lsa[24] = lsa[23];
+    lsa[25] = lsa[24];
+    lsa[26] = lsa[25];
+    lsa[27] = lsa[26];
+    lsa[28] = lsa[27];
+    lsa[29] = lsa[28];
+    lsa[30] = lsa[29];
+    lsa[1] = lsa[0];
+    lsa[2] = lsa[1];
+    lsa[3] = lsa[2];
+    lsa[4] = lsa[3];
+    lsa[5] = lsa[4];
+    lsa[6] = lsa[5];
+    lsa[7] = lsa[6];
+    lsa[8] = lsa[7];
+    lsa[9] = lsa[8];
+    lsa[10] = lsa[9];
+    lsa[11] = lsa[10];
+    lsa[12] = lsa[11];
+    lsa[13] = lsa[12];
+    lsa[14] = lsa[13];
+    lsa[15] = lsa[14];
+    lsa[16] = lsa[15];
+    lsa[17] = lsa[16];
+    lsa[18] = lsa[17];
+    lsa[19] = lsa[18];
+    lsa[20] = lsa[19];
+    lsa[21] = lsa[20];
+    lsa[22] = lsa[21];
+    lsa[23] = lsa[22];
+    lsa[24] = lsa[23];
+    lsa[25] = lsa[24];
+    lsa[26] = lsa[25];
+    lsa[27] = lsa[26];
+    lsa[28] = lsa[27];
+    lsa[29] = lsa[28];
+    lsa[30] = lsa[29];
+    lsa[1] = lsa[0];
+    lsa[2] = lsa[1];
+    lsa[3] = lsa[2];
+    lsa[4] = lsa[3];
+    lsa[5] = lsa[4];
+    lsa[6] = lsa[5];
+    lsa[7] = lsa[6];
+    lsa[8] = lsa[7];
+    lsa[9] = lsa[8];
+    lsa[10] = lsa[9];
+    lsa[11] = lsa[10];
+    lsa[12] = lsa[11];
+    lsa[13] = lsa[12];
+    lsa[14] = lsa[13];
+    lsa[15] = lsa[14];
+    lsa[16] = lsa[15];
+    lsa[17] = lsa[16];
+    lsa[18] = lsa[17];
+    lsa[19] = lsa[18];
+    lsa[20] = lsa[19];
+    lsa[21] = lsa[20];
+    lsa[22] = lsa[21];
+    lsa[23] = lsa[22];
+    lsa[24] = lsa[23];
+    lsa[25] = lsa[24];
+    lsa[26] = lsa[25];
+    lsa[27] = lsa[26];
+    lsa[28] = lsa[27];
+    lsa[29] = lsa[28];
+    lsa[30] = lsa[29];
+    lsa[1] = lsa[0];
+    lsa[2] = lsa[1];
+    lsa[3] = lsa[2];
+    lsa[4] = lsa[3];
+    lsa[5] = lsa[4];
+    lsa[6] = lsa[5];
+    lsa[7] = lsa[6];
+    lsa[8] = lsa[7];
+    lsa[9] = lsa[8];
+    lsa[10] = lsa[9];
+    lsa[11] = lsa[10];
+    lsa[12] = lsa[11];
+    lsa[13] = lsa[12];
+    lsa[14] = lsa[13];
+    lsa[15] = lsa[14];
+    lsa[16] = lsa[15];
+    lsa[17] = lsa[16];
+    lsa[18] = lsa[17];
+    lsa[19] = lsa[18];
+    lsa[20] = lsa[19];
+    lsa[21] = lsa[20];
+    lsa[22] = lsa[21];
+    lsa[23] = lsa[22];
+    lsa[24] = lsa[23];
+    lsa[25] = lsa[24];
+    lsa[26] = lsa[25];
+    lsa[27] = lsa[26];
+    lsa[28] = lsa[27];
+    lsa[29] = lsa[28];
+    lsa[30] = lsa[29];
+  }
+  cout << "Time for longs (120 assigns): " << count
+       << " iterations: " << Gettime() << " seconds\n";
+
+  Settime();
+  for (i=0; i<count; i++) {
+    b.f1 = b.f0;
+    b.f2 = b.f1;
+    b.f3 = b.f2;
+    b.f4 = b.f3;
+    b.f5 = b.f4;
+    b.f6 = b.f5;
+    b.f7 = b.f6;
+    b.f8 = b.f7;
+    b.f9 = b.f8;
+    b.f10 = b.f9;
+    b.f11 = b.f10;
+    b.f12 = b.f11;
+    b.f13 = b.f12;
+    b.f14 = b.f13;
+    b.f15 = b.f14;
+    b.f16 = b.f15;
+    b.f17 = b.f16;
+    b.f18 = b.f17;
+    b.f19 = b.f18;
+    b.f20 = b.f19;
+    b.f21 = b.f20;
+    b.f22 = b.f21;
+    b.f23 = b.f22;
+    b.f24 = b.f23;
+    b.f25 = b.f24;
+    b.f26 = b.f25;
+    b.f27 = b.f26;
+    b.f28 = b.f27;
+    b.f29 = b.f28;
+    b.f30 = b.f29;
+    b.f1 = b.f0;
+    b.f2 = b.f1;
+    b.f3 = b.f2;
+    b.f4 = b.f3;
+    b.f5 = b.f4;
+    b.f6 = b.f5;
+    b.f7 = b.f6;
+    b.f8 = b.f7;
+    b.f9 = b.f8;
+    b.f10 = b.f9;
+    b.f11 = b.f10;
+    b.f12 = b.f11;
+    b.f13 = b.f12;
+    b.f14 = b.f13;
+    b.f15 = b.f14;
+    b.f16 = b.f15;
+    b.f17 = b.f16;
+    b.f18 = b.f17;
+    b.f19 = b.f18;
+    b.f20 = b.f19;
+    b.f21 = b.f20;
+    b.f22 = b.f21;
+    b.f23 = b.f22;
+    b.f24 = b.f23;
+    b.f25 = b.f24;
+    b.f26 = b.f25;
+    b.f27 = b.f26;
+    b.f28 = b.f27;
+    b.f29 = b.f28;
+    b.f30 = b.f29;
+    b.f1 = b.f0;
+    b.f2 = b.f1;
+    b.f3 = b.f2;
+    b.f4 = b.f3;
+    b.f5 = b.f4;
+    b.f6 = b.f5;
+    b.f7 = b.f6;
+    b.f8 = b.f7;
+    b.f9 = b.f8;
+    b.f10 = b.f9;
+    b.f11 = b.f10;
+    b.f12 = b.f11;
+    b.f13 = b.f12;
+    b.f14 = b.f13;
+    b.f15 = b.f14;
+    b.f16 = b.f15;
+    b.f17 = b.f16;
+    b.f18 = b.f17;
+    b.f19 = b.f18;
+    b.f20 = b.f19;
+    b.f21 = b.f20;
+    b.f22 = b.f21;
+    b.f23 = b.f22;
+    b.f24 = b.f23;
+    b.f25 = b.f24;
+    b.f26 = b.f25;
+    b.f27 = b.f26;
+    b.f28 = b.f27;
+    b.f29 = b.f28;
+    b.f30 = b.f29;
+    b.f1 = b.f0;
+    b.f2 = b.f1;
+    b.f3 = b.f2;
+    b.f4 = b.f3;
+    b.f5 = b.f4;
+    b.f6 = b.f5;
+    b.f7 = b.f6;
+    b.f8 = b.f7;
+    b.f9 = b.f8;
+    b.f10 = b.f9;
+    b.f11 = b.f10;
+    b.f12 = b.f11;
+    b.f13 = b.f12;
+    b.f14 = b.f13;
+    b.f15 = b.f14;
+    b.f16 = b.f15;
+    b.f17 = b.f16;
+    b.f18 = b.f17;
+    b.f19 = b.f18;
+    b.f20 = b.f19;
+    b.f21 = b.f20;
+    b.f22 = b.f21;
+    b.f23 = b.f22;
+    b.f24 = b.f23;
+    b.f25 = b.f24;
+    b.f26 = b.f25;
+    b.f27 = b.f26;
+    b.f28 = b.f27;
+    b.f29 = b.f28;
+    b.f30 = b.f29;
+  }
+  cout << "Time for bitfields (120 assigns): " << count
+       << " iterations: " << Gettime() << " seconds\n";
+
+ return 0;
+}

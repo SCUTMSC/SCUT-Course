@@ -1,0 +1,7 @@
+3
+"a" 1
+"b" 2
+"c" 4
+encode "abc"
+decode "01"
+decode "11"
