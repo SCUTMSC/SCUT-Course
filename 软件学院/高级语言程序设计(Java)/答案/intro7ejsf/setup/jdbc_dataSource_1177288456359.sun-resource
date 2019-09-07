@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <jdbc-resource enabled="true" jndi-name="jdbc/dataSource_1177288456359" object-type="user" pool-name="mysqlPool_1"/>
+</resources>
