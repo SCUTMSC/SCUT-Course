@@ -1,0 +1,15 @@
+8
+"c" 32
+"l" 42
+"d" 42
+"e" 120
+"f" 24
+"k" 7
+"u" 37
+"z" 2
+decode "10100101"
+decode "11111100111100111100"
+decode "1011001110111101"
+encode "deed"
+encode "duck"
+encode "fuzz"
